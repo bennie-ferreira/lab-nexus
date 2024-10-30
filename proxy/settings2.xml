@@ -1,0 +1,71 @@
+<settings>
+    <servers>
+        <server>
+            <id>nexus</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://192.168.0.115/nexus/content/repositories/maven-teste/</url> <!-- Atualize para a URL do novo repositório -->
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>nexus</id>
+            <repositories>
+                <repository>
+                    <id>maven-teste</id>
+                    <url>http://192.168.0.115/nexus/content/repositories/maven-teste/</url> <!-- URL do repositório de proxy `maven-teste` -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled> <!-- Permite snapshots, caso necessário -->
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2</url> <!-- URL de fallback caso algo não seja encontrado no `maven-teste` -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>maven-teste-plugins</id>
+                    <url>http://192.168.0.115/nexus/content/repositories/maven-teste/</url> <!-- URL para plugins -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>central-plugins</id>
+                    <url>https://repo.maven.apache.org/maven2</url> <!-- Fallback para plugins do Maven Central -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>

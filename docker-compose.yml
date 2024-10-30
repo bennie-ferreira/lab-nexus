@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  nexus:
+    image: sonatype/nexus:2.14.11-01
+    container_name: nexus
+    restart: always
+    volumes:
+      - nexus-data:/sonatype-work
+    ports:
+      - "80:8081"
+    networks:
+      - network-nexus
+
+  mak1:
+    image: goyalzz/ubuntu-java-8-maven-docker-image:latest
+    restart: always
+    command:
+     - "sh"
+     - "-c"
+     - "tail -f /dev/null"
+    networks:
+      - network-nexus
+
+volumes:
+  nexus-data: {}
+
+networks:
+  network-nexus:
+    driver: bridge
