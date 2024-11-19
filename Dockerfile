@@ -1,7 +1,7 @@
 # Download base image ubuntu 14.04
 FROM ubuntu:trusty
 
-MAINTAINER  Bennie Ferreira
+MAINTAINER Bennie Ferreira
  
 # Prepare installation of Oracle Java 8
 ENV JAVA_VER 8
